@@ -48,37 +48,37 @@ function submitStudent(){
 
 
     //Validate edad 
-    // if (!(2021-bDate.substring(0,4) >= 18)){
-    //     alert("Debes tener mas de 18 años!")
-    //     flag = false;
-    // }
+    if (!(2021-bDate.substring(0,4) >= 18)){
+        alert("Debes tener mas de 18 años!")
+        flag = false;
+    }
 
     //Validate nombre
-    // if(phone.length!==10){
-    //     alert("Campo Telefono no puede exceder los 10 caracteres!");
-    //     flag = false;
-    // }
+    if(phone.length!==10){
+        alert("Campo Telefono no puede exceder los 10 caracteres!");
+        flag = false;
+    }
 
     //Validate email
-    // if(email.length>50){
-    //     alert("Campo email no puede exceder los 50 caracteres!");
-    //     flag = false;
-    // }
+    if(email.length>50){
+        alert("Campo email no puede exceder los 50 caracteres!");
+        flag = false;
+    }
 
     //Validar legajo
-    // if(nLegajo!==vLegajo){
-    //     alert("Numero de legajo incorrecto")
-    //     flag = false;
-    // }
+    if(nLegajo!==vLegajo){
+        alert("Numero de legajo incorrecto")
+        flag = false;
+    }
 
     //Validar course
-    // if (courses[course].range.indexOf(parseInt(2021 - bDate.substring(0, 4))) == -1){
-    //     alert("No pertenece al rango de edad del curso");
-    //     flag = false;
-    // }
+    if (courses[course].range.indexOf(parseInt(2021 - bDate.substring(0, 4))) == -1){
+        alert("No pertenece al rango de edad del curso");
+        flag = false;
+    }
 
     //Ocultar form
-    // document.getElementById("dataForm").classList.add("d-none");
+    document.getElementById("dataForm").classList.add("d-none");
 
     if(flag){
         //Hide things
