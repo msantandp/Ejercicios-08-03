@@ -9,7 +9,8 @@
     integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 </head>
 <body>
-    <div class="row mt-4">
+    <!-- Buttons Menu -->
+    <div class="row mt-4" id="btnMenu">
         <div class="col offset-1">
             <button type="button" class="btn btn-dark btn-lg" onclick="signStudentBtn()">Inscribir alumno</button>
         </div>
@@ -20,6 +21,8 @@
             <button type="button" class="btn btn-dark btn-lg" onclick="showStudentsBtn()">Mostrar Alumnos</button>
         </div>
     </div>
+    <br>
+    <!-- Formulario de Inscripcion -->
     <div class="row ">
         <div class="col offset-4">
             <div class="container mt-4">
@@ -28,7 +31,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col p-5 offset-4">
+        <div class="col p-5 offset-4 ">
             <form id="dataForm" class="">
                 <div class="form-group">
                   <label for="iName">Nombre</label>
@@ -57,17 +60,17 @@
                 <div class="form-group">
                     <label for="sCourse">Numero de Legajo</label>
                     <select id="sCourse" class="form-control w-25">
-                        <option value="Curso1">Curso1</option>
-                        <option value="Curso2">Curso2</option>
-                        <option value="Curso3">Curso3</option>
+                        <option value="0">Curso1</option>
+                        <option value="1">Curso2</option>
+                        <option value="2">Curso3</option>
                     </select>
                 </div>
                 <input class="btn btn-primary mt-2" onclick="submitStudent()" value="Enviar"></input>
               </form>
         </div>
     </div>
-
-    <div class="container text-center d-none">
+    <!-- Buscar Alumno -->
+    <div id="searchForm" class="container text-center d-none">
         <div class="row">
             <div class="col text-center">
                 <label for="searchP">Parametro de Busqueda</label>
@@ -85,9 +88,349 @@
                     <input type="text" class="form-control" id="inputSearch">
                 </div>
             </div>
-            <div class="col">
-                <input class="btn btn-primary mt-2" onclick="searchStudent()" value="Enviar"></input>
+            <div class="col mt-3">
+                <input class="btn btn-primary mt-2" onclick="searchStudent()" value="Buscar"></input>
             </div>
+        </div>
+    </div>
+    <!-- Mostrar estudiante -->
+    <div class="container d-none" id="showStudent">
+        <div class="row mt-4">
+            <div class="col-6 offset-3">
+                <div id="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center" id="nameCard"></h5>
+                        <h6 class="card-subtitle mb-2 " id="dniCard"></h6>
+                        <h6 class="card-subtitle mb-2 " id="bDateCard"></h6>
+                        <h6 class="card-subtitle mb-2 " id="phoneCard"></h6>
+                        <h6 class="card-subtitle mb-2 " id="emailCard"></h6>
+                        <h6 class="card-subtitle mb-2 " id="legajoCard"></h6>
+                        <h6 class="card-subtitle mb-2 " id="courseCard"></h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Tabla -->
+    <div class="container d-none" id="tableContainer">
+        <div class="row">
+            <div class="col">
+            </div>
+            <table class="table table-bordered table-striped table-hover sortable text-center" id="table">
+                <thead>
+                    <tr class="bg-dark text-white">
+                        <th scope="col">DNI</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Nacimiento</th>
+                        <th scope="col">Curso</th>
+                        <th scope="col">Legajo</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Ingresar Notas -->
+    <div id="gradesForm" class="container text-center d-none">
+        <div class="row">
+            <div class="col text-center">
+                <label for="" >Materia</label>
+                <h4>Quimica</h4>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <label for="">Ingrese nota 1</label>
+                    <input type="number" class="form-control" id="grade1Q" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <label for="">Ponderado 1</label>
+                    <input type="number" class="form-control" id="p1Q" placeholder="Sin porcentaje" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <label for="">Ingrese Nota 2</label>
+                    <input type="number" class="form-control" id="grade2Q" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <label for="">Ponderado 2</label>
+                    <input type="number" class="form-control" id="p2Q" placeholder="Sin porcentaje" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <label for="">Ingrese Nota 3</label>
+                    <input type="number" class="form-control" id="grade3Q" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <label for="">Ponderado 3</label>
+                    <input type="number" class="form-control" id="p3Q" placeholder="Sin porcentaje" value="0">
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col text-center">
+                <h4>Matematica</h4>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="grade1M" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="p1M" placeholder="Sin porcentaje" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="grade2M" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="p2M" placeholder="Sin porcentaje" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="grade3M" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="p3M" placeholder="Sin porcentaje" value="0">
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col text-center">
+                <h5>Ciencias Sociales</h5>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="grade1C" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="p1C" placeholder="Sin porcentaje" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="grade2C" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="p2C" placeholder="Sin porcentaje" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="grade3C" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="p3C" placeholder="Sin porcentaje" value="0">
+                </div>
+            </div>
+        </div>
+        <!-- Margen solamente -->
+        <div class="row mt-2">
+            <div class="col text-center">
+                <h4>Fisica</h4>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="grade1F" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="p1F" placeholder="Sin porcentaje" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="grade2F" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="p2F" placeholder="Sin porcentaje" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="grade3F" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="p3F" placeholder="Sin porcentaje" value="0">
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col text-center">
+                <h4>Historia</h4>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="grade1H" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="p1H" placeholder="Sin porcentaje" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="grade2H" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="p2H" placeholder="Sin porcentaje" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="grade3H" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="p3H" placeholder="Sin porcentaje" value="0">
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col text-center">
+                <h4>Biologia</h4>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="grade1B" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="p1B" placeholder="Sin porcentaje" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="grade2B" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="p2B" placeholder="Sin porcentaje" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="grade3B" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="p3B" placeholder="Sin porcentaje" value="0">
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col text-center">
+                <h4>Informatica</h4>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="grade1I" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="p1I" placeholder="Sin porcentaje" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="grade2I" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="p2I" placeholder="Sin porcentaje" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="grade3I" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="p3I" placeholder="Sin porcentaje" value="0">
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col text-center">
+                <h4>Idiomas</h4>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="grade1Id" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="p1Id" placeholder="Sin porcentaje" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="grade2Id" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="p2Id" placeholder="Sin porcentaje" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="grade3Id" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group text-center">
+                    <input type="number" class="form-control" id="p3Id" placeholder="Sin porcentaje" value="0">
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <input class="btn btn-primary mt-2" onclick="submitGrades()" value="Registrar notas"></input>
         </div>
     </div>
 
